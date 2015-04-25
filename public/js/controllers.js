@@ -32,7 +32,7 @@ demoControllers.controller('LlamaListController', ['$scope', '$http', 'Llamas', 
 
 }]);
 
-demoControllers.controller('SettingsController', ['$scope' , '$window' , function($scope, $window) {
+demoControllers.controller('HomeController', ['$scope' , '$window' , function($scope, $window) {
   $scope.url = $window.sessionStorage.baseurl;
 
   $scope.setUrl = function(){
