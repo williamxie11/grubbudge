@@ -1,6 +1,6 @@
 var demoControllers = angular.module('demoControllers', []);
 
-demoControllers.controller('FirstController', ['$scope', 'CommonData'  , function($scope, CommonData) {
+demoControllers.controller('MealPlanController', ['$scope', 'CommonData'  , function($scope, CommonData) {
   $scope.data = "";
    $scope.displayText = ""
 
@@ -23,11 +23,8 @@ demoControllers.controller('SecondController', ['$scope', 'CommonData' , functio
 }]);
 
 
-demoControllers.controller('LlamaListController', ['$scope', '$http', 'Llamas', '$window' , function($scope, $http,  Llamas, $window) {
-
-  Llamas.get().success(function(data){
-    $scope.llamas = data;
-  });
+demoControllers.controller('ListController', ['$scope', '$http', 'Llamas', '$window' , function($scope, $http,  Llamas, $window) {
+  
 
 
 }]);

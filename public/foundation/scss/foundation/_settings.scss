@@ -99,7 +99,7 @@ $include-html-global-classes: $include-html-classes;
 $trans       : rgba(0, 0, 0, 0);
 $trans2       : rgba(0, 0, 0, .4);
 $white       : #FFFFFF;
-// $ghost       : #FAFAFA;
+$ghost       : #FAFAFA;
 // $snow        : #F9F9F9;
 // $vapor       : #F6F6F6;
 // $white-smoke : #F5F5F5;
@@ -110,11 +110,11 @@ $white       : #FFFFFF;
 // $base        : #AAAAAA;
 // $aluminum    : #999999;
 // $jumbo       : #888888;
-// $monsoon     : #777777;
-// $steel       : #666666;
-// $charcoal    : #555555;
-// $tuatara     : #444444;
-// $oil         : #333333;
+ $monsoon     : #777777;
+ $steel       : #666666;
+ $charcoal    : #555555;
+ $tuatara     : #444444;
+ $oil         : #333333;
 // $jet         : #222222;
 // $black       : #000000;
 
@@ -127,7 +127,7 @@ $white       : #FFFFFF;
 // $info-color: #a0d3e8;
 
 // We use these to control various global styles
-// $body-bg: $white;
+$body-bg: #34495e;
 // $body-font-color: $jet;
 // $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
@@ -153,8 +153,7 @@ $white       : #FFFFFF;
 
 // d. Media Query Ranges
 // - - - - - - - - - - - - - - - - - - - - - - - - -
-
-// $small-range: (0em, 40em);
+$small-range: (0em, 40em);
 // $medium-range: (40.063em, 64em);
 // $large-range: (64.063em, 90em);
 // $xlarge-range: (90.063em, 120em);
@@ -217,10 +216,10 @@ $header-font-color: $white;
 // $h6-font-size: 1rem;
 
 // We use these to control header size reduction on small screens
-// $h1-font-reduction: rem-calc(10);
-// $h2-font-reduction: rem-calc(10);
+$h1-font-reduction: rem-calc(24);
+$h2-font-reduction: rem-calc(22);
 // $h3-font-reduction: rem-calc(5);
-// $h4-font-reduction: rem-calc(5);
+ $h4-font-reduction: rem-calc(8);
 // $h5-font-reduction: 0;
 // $h6-font-reduction: 0;
 
@@ -636,9 +635,9 @@ $header-font-color: $white;
 // $input-font-family: inherit;
 // $input-font-color: rgba(0,0,0,0.75);
 // $input-font-size: rem-calc(14);
-// $input-bg-color: $white;
-// $input-focus-bg-color: scale-color($white, $lightness: -2%);
-// $input-border-color: scale-color($white, $lightness: -20%);
+ $input-bg-color: $ghost;
+ $input-focus-bg-color: scale-color($input-bg-color, $lightness: -3%);
+$input-border-color: $monsoon;
 // $input-focus-border-color: scale-color($white, $lightness: -40%);
 // $input-border-style: solid;
 // $input-border-width: 1px;
@@ -662,8 +661,8 @@ $header-font-color: $white;
 
 // We use these to style the prefix and postfix input elements
 // $input-prefix-bg: scale-color($white, $lightness: -5%);
-// $input-prefix-border-color: scale-color($white, $lightness: -20%);
-// $input-prefix-border-size: 1px;
+$input-prefix-border-color: $input-border-color;
+ $input-prefix-border-size: 1px;
 // $input-prefix-border-type: solid;
 // $input-prefix-overflow: hidden;
 // $input-prefix-font-color: $oil;
@@ -1444,8 +1443,8 @@ $topbar-dropdown-bg: $trans;
 // Transitions and breakpoint styles
 // $topbar-transition-speed: 300ms;
 // Using rem-calc for the below breakpoint causes issues with top bar
-// $topbar-breakpoint: #{lower-bound($medium-range)}; // Change to 9999px for always mobile layout
-// $topbar-media-query: $medium-up;
+$topbar-breakpoint: emCalc(1px); // Change to 9999px for always mobile layout
+$topbar-media-query: "only screen and (min-width: #{$topbar-breakpoint})";
 
 // Top-bar input styles
 // $topbar-input-height: rem-calc(28);
