@@ -24,13 +24,14 @@ grubControllers.controller('SecondController', ['$scope', 'CommonData' , functio
 
 
 grubControllers.controller('ListController', ['$scope', '$http', 'HomeFactory' , function($scope, $http,  HomeFactory) {
-    console.log('INSIDE LIST CONTROLLER');
-    $scope.queryData = HomeFactory.get();
+    //console.log('INSIDE LIST CONTROLLER');
+    //$scope.queryData = HomeFactory.get();
     //console.log($scope.queryData);
-    var myBudget = 30;
+    var myBudget = 3;
     var myMealType = 0;
     var category = 0;
 
+    var name;
     var imageURL;
     var rating;
     var ratingURL;
@@ -38,31 +39,48 @@ grubControllers.controller('ListController', ['$scope', '$http', 'HomeFactory' ,
     HomeFactory.getMealList(myBudget, myMealType, category).success(function(data){
           //console.log(data);
           $scope.data = data.data;
-          console.log($scope.data[0].address);
-          //HomeFactory.set($scope.data);
-          //console.log(HomeFactory.getQueryVal());
+
+          $scope.name = $scope.data[0].name;
+          $scope.imageURL = $scope.data[0].imageURL;
+          $scope.rating = $scope.data[0].rating;
+          $('.star').raty({readOnly:true, score: $scope.rating});
+          $scope.ratingURL = $scope.data[0].ratingURL;
+          $scope.address = $scope.data[0].address;
+          $scope.categories = $scope.data[0].categories;
         })
+
+
 }]);
 
 grubControllers.controller('HomeController', ['$scope' , '$window', 'HomeFactory',function($scope, $window, HomeFactory) {
 
     /***** BUDGE SEARCH *****/
     $scope.budgeSearch = function () {
-        console.log('Someone made a budgy search query');
+        //console.log('Someone made a budgy search query');
         var myBudget = $scope.asad;
         var myMealType = $scope.MealType;
         var category = $scope.category;
+
+        if(myBudget <= 10)
+          myBudget = 1;
+        else if(myBudget <= 20)
+          myBudget = 2;
+        else if (myBudget <= 30)
+          myBudget = 3;
+        else
+          myBudget = 4;
+
         //myBudget = $('#budget').val();
-        console.log('my price is ' + myBudget);
-        console.log(myMealType);
-        console.log('my category is' + category);
+        //console.log('my price is ' + myBudget);
+        //console.log(myMealType);
+        //console.log('my category is' + category);
 
 
         HomeFactory.getMealList(myBudget, myMealType, category).success(function(data){
           //console.log(data);
-          $scope.data = data;
-          //console.log($scope.data);
-          HomeFactory.set($scope.data);
+          $scope.data = data.data;
+          console.log($scope.data);
+          //HomeFactory.set($scope.data);
           //console.log(HomeFactory.getQueryVal());
         })
 
