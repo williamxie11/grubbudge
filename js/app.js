@@ -1,9 +1,9 @@
 // var demoApp = angular.module('demoApp', ['demoControllers']);
 
-var demoApp = angular.module('demoApp', ['ngRoute', 'demoControllers', 'demoServices', 'ngLoadScript', '720kb.datepicker']);
+var grubApp = angular.module('grubApp', ['ngRoute', 'grubControllers', 'grubServices', 'ngLoadScript', '720kb.datepicker']);
 
 
-demoApp.config(['$routeProvider', function($routeProvider) {
+grubApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
     when('/mealplan', {
     templateUrl: 'partials/mealplan.html',

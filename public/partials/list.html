@@ -1,44 +1,84 @@
-<div class="list" ng-controller='ListController'>		
-	<div id="input-list" class="row">
+<div class="list" ng-controller='ListController'>	
+
+  <!--Input Form-->	
+	<form data-abide>
+   <div id="input-list" class="row">
+    <!--Empty Space-->
         <div class="small-1 columns">&nbsp;
         </div>
-        <div class="medium-3 columns">
+        <!--Budget Input-->
+        <div class="medium-2 columns">
           <div class="row collapse prefix-round">
             <div class="small-2 columns">
               <span class="prefix">$</span>
             </div>
             <div class="small-10 columns">
-              <input type="text" placeholder="Budget">
+              <input type="number" required pattern="number" placeholder="Budget">
             </div>
           </div>
         </div>
-        <div class="medium-4 columns">
+        <!--Meal Time Input-->
+        <div class="medium-3 columns">
           <select>
-          <option value="volvo">Meal Type</option>
+          <option value="volvo">Meal Time</option>
           <option value="saab">Breakfast</option>
           <option value="opel">Lunch</option>
           <option value="audi">Dinner</option>
           <option value="audi">Late Night</option>
         </select>
         </div>
+        <!--Search Input-->
         <div class="medium-3 columns">
+          <input type="text" placeholder="What are you looking for?">
+        </div>
+        <!--Date Input-->
+        <div class="medium-2 columns">
           <datepicker>
             <input placeholder="Date" ng-model="date" type="text"/>
           </datepicker>
         </div>
+        <!--Empty Space-->
         <div class="small-1 columns">&nbsp;
         </div>
+
+        <!--Sort Dropdown, used grid to force to right side-->
+        <div class="row">
+          <div class="medium-10 columns hide-for-small-only">&nbsp;
+        </div>
+        <div class="medium-2 columns">
+          <select>
+          <option value="volvo">Sort By</option>
+          <option value="saab">Cheapest</option>
+          <option value="opel">Most Expensive</option>
+          <option value="opel">Highest Rating</option>
+        </select>
+        </div>
+    </div>
+      </div>
+</form>
+
+          <!--           ASAD:                 IF LOGGED IN (Go to meal plan) ELSE (display loginContinue Modal)    -->
+
+          <!--Login Modal "login" tied to login button-->     
+      <div id="login" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+       <h3 id="modalTitle">Login or Signup</h3>
+       <input placeholder="Username" type="text">
+        <input placeholder="Password" type="text">
+            <a href="#" class="button round modal-button">Go</a>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
       </div>
 
-
-      <div id="myModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-       <h3 id="modalTitle">Please Log in with Facebook to add {Meal Place} to your Meal Planner</h3>
-            <a href="#" class="button round modal-button">Login</a>
+          <!--Continue to Mealplan View modal "loginContinue" currently tied to BudgeIt button in second restaurant item-->
+      <div id="loginContinue" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+       <h3 id="modalTitle">You must Login or Signup to Continue</h3>
+       <input placeholder="Username" type="text">
+        <input placeholder="Password" type="text">
+            <a href="#" class="button round modal-button">Go</a>
         <a class="close-reveal-modal" aria-label="Close">&#215;</a>
       </div>
 
 
-      
+      <!--Restaurant Item-->
       <div class="list-item">
         
       	<div class="row" >
@@ -48,13 +88,14 @@
       	</div>
 
       	<div class="medium-6 large-9 columns">
+          <!--           ASAD:                 IF LOGGED IN (Go to meal plan) ELSE (display loginContinue Modal)    -->
           <a href="#/mealplan" class="button success addedMeal"><i class="fa fa-check"></i>&nbsp;Budge It!</a>
       		<h3 class="restaurant-title">Destihl Restaurant & Brew Works</h3>
       		<div class="star"></div>
       		<script>
 			$('.star').raty({readOnly:true, score:3});
 			</script>
-      		<h5 class = "restaurant-review"><i>146 Reviews</i></h5>
+      		<h5 class = "restaurant-review"><i>$$$</i></h5>
           <p><i>
             American (New), Gluten-free, Breakfast & Brunch, beer-battered asparagus, stout ice cream sandwiches, cheese curds
           </i></p>
@@ -64,6 +105,7 @@
         <div class="line-break"></div>
       </div>
 
+      <!--Restaurant Item-->
       <div class="list-item">
         
         <div class="row" >
@@ -73,13 +115,14 @@
         </div>
 
         <div class="medium-6 large-9 columns">
-          <a data-reveal-id="myModal" class="button success addedMeal"><i class="fa fa-check"></i>&nbsp;Budge It!</a>
+          <!--           ASAD:                 IF LOGGED IN (Go to meal plan) ELSE (display loginContinue Modal)    -->
+          <a data-reveal-id="loginContinue" class="button success addedMeal"><i class="fa fa-check"></i>&nbsp;Budge It!</a>
           <h3 class="restaurant-title">Destihl Restaurant & Brew Works</h3>
           <div class="star"></div>
           <script>
       $('.star').raty({readOnly:true, score:3});
       </script>
-          <h5 class = "restaurant-review"><i>146 Reviews</i></h5>
+          <h5 class = "restaurant-review"><i>$$$</i></h5>
           <p><i>
             American (New), Gluten-free, Breakfast & Brunch, beer-battered asparagus, stout ice cream sandwiches, cheese curds
           </i></p>
@@ -88,7 +131,7 @@
         </div>
         <div class="line-break"></div>
       </div>
-
+      <!--Restaurant Item-->
       <div class="list-item">
         
         <div class="row" >
@@ -98,13 +141,13 @@
         </div>
 
         <div class="medium-6 large-9 columns">
-          <a data-reveal-id="myModal" class="button success addedMeal"><i class="fa fa-check"></i>&nbsp;Budge It!</a>
+          <a data-reveal-id="loginloginContinue" class="button success addedMeal"><i class="fa fa-check"></i>&nbsp;Budge It!</a>
           <h3 class="restaurant-title">Destihl Restaurant & Brew Works</h3>
           <div class="star"></div>
           <script>
       $('.star').raty({readOnly:true, score:3});
       </script>
-          <h5 class = "restaurant-review"><i>146 Reviews</i></h5>
+          <h5 class = "restaurant-review"><i>$$$</i></h5>
           <p><i>
             American (New), Gluten-free, Breakfast & Brunch, beer-battered asparagus, stout ice cream sandwiches, cheese curds
           </i></p>

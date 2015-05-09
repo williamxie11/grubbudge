@@ -66,16 +66,20 @@ h1 {
   font-size: 2.2rem;
   color: #ef7e60; }
 
-/* line 10, ../../sass/_base.scss */
+/* line 9, ../../sass/_base.scss */
+body {
+  background: url("//demosthenes.info/assets/images/polina.jpg"); }
+
+/* line 12, ../../sass/_base.scss */
 .name {
   background-color: rgba(0, 0, 0, 0.4); }
 
-/* line 13, ../../sass/_base.scss */
+/* line 15, ../../sass/_base.scss */
 .test {
   font-size: 1.2rem;
   color: #2176C7; }
 
-/* line 17, ../../sass/_base.scss */
+/* line 19, ../../sass/_base.scss */
 video {
   position: fixed;
   bottom: 0;
@@ -88,15 +92,15 @@ video {
   background-size: cover;
   transition: 1s opacity; }
 
-/* line 29, ../../sass/_base.scss */
+/* line 31, ../../sass/_base.scss */
 .currencyinput {
   border: 1px inset #ccc; }
 
-/* line 32, ../../sass/_base.scss */
+/* line 34, ../../sass/_base.scss */
 .currencyinput input {
   border: 0; }
 
-/* line 35, ../../sass/_base.scss */
+/* line 40, ../../sass/_base.scss */
 #input {
   background-color: rgba(0, 0, 0, 0.4);
   text-align: center;
@@ -105,72 +109,170 @@ video {
   left: 50%;
   transform: translate(-50%, -50%); }
 
-/* line 45, ../../sass/_base.scss */
+/* line 50, ../../sass/_base.scss */
 #input-list {
   margin-top: 10px;
   border-bottom-style: solid;
   width: 90%; }
 
-/* line 51, ../../sass/_base.scss */
+/* line 56, ../../sass/_base.scss */
 #input-list input select {
   background-color: rgba(0, 0, 0, 0.4); }
 
-/* line 54, ../../sass/_base.scss */
+/* line 59, ../../sass/_base.scss */
 .list-item {
   margin-bottom: 6px; }
 
-/* line 58, ../../sass/_base.scss */
+/* line 63, ../../sass/_base.scss */
 .reveal-modal {
   text-align: center; }
 
-/* line 61, ../../sass/_base.scss */
+/* line 66, ../../sass/_base.scss */
 .reveal-modal h3 {
   color: #000000; }
 
-/* line 65, ../../sass/_base.scss */
+/* line 70, ../../sass/_base.scss */
 .modal-button {
   margin: 0 auto; }
 
-/* line 68, ../../sass/_base.scss */
+/* line 73, ../../sass/_base.scss */
 .addedMeal {
   padding-top: 10px;
   float: right;
   z-index: 100; }
 
-/* line 73, ../../sass/_base.scss */
+/* line 78, ../../sass/_base.scss */
 .item-bg {
   padding-top: 10px;
   padding-bottom: 10px;
   display: inline-block;
-  background-color: #EFEFEF;
-  position: relative; }
+  background-color: #EFEFEF; }
 
-/* line 80, ../../sass/_base.scss */
+/* line 84, ../../sass/_base.scss */
+.meal {
+  margin-top: 10px; }
+
+/* line 87, ../../sass/_base.scss */
 .block {
   background-color: #FFFFFF; }
 
-/* line 83, ../../sass/_base.scss */
+/* line 90, ../../sass/_base.scss */
 .line-break {
   margin: 0 auto;
   width: 70%; }
   @media only screen and (max-width: 40em) {
-    /* line 83, ../../sass/_base.scss */
+    /* line 90, ../../sass/_base.scss */
     .line-break {
       width: 90%; } }
 
-/* line 91, ../../sass/_base.scss */
+/* line 98, ../../sass/_base.scss */
+.line-break-white {
+  padding-top: 10px;
+  border-bottom: groove;
+  border-color: #FFFFFF;
+  margin: 0 auto;
+  width: 80%; }
+  @media only screen and (max-width: 40em) {
+    /* line 98, ../../sass/_base.scss */
+    .line-break-white {
+      width: 90%; } }
+
+/* line 106, ../../sass/_base.scss */
+.line-break-white-full {
+  padding-top: 10px;
+  border-bottom: groove;
+  border-color: #FFFFFF;
+  border-width: 2px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  width: 100%; }
+
+/* line 115, ../../sass/_base.scss */
 .restaurant-title {
   color: #333333; }
 
-/* line 94, ../../sass/_base.scss */
+/* line 118, ../../sass/_base.scss */
 .restaurant-review {
   color: #333333;
   display: inline-block; }
 
-/* line 98, ../../sass/_base.scss */
+/* line 122, ../../sass/_base.scss */
 .star {
   display: inline-block; }
 
-/* line 101, ../../sass/_base.scss */
+/* line 125, ../../sass/_base.scss */
 .star-tag {
   margin-top: -15px; }
+
+/* line 128, ../../sass/_base.scss */
+.margin {
+  margin-left: 5px;
+  margin-right: 5px; }
+
+/* line 132, ../../sass/_base.scss */
+.center {
+  text-align: center; }
+
+/* line 135, ../../sass/_base.scss */
+.hidden {
+  visibility: hidden; }
+
+/* line 138, ../../sass/_base.scss */
+.meal-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-block;
+  background-color: #EFEFEF;
+  position: relative; }
+
+/* line 147, ../../sass/_base.scss */
+.time {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-block;
+  position: absolute; }
+
+/* line 155, ../../sass/_base.scss */
+.time-center {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-block;
+  margin: 0 auto; }
+
+/* line 163, ../../sass/_base.scss */
+.trans {
+  color: rgba(0, 0, 0, 0.4); }
+
+/* line 166, ../../sass/_base.scss */
+.meal a {
+  position: absolute;
+  right: 15px;
+  z-index: 10; }
+
+/* line 171, ../../sass/_base.scss */
+.meal-name {
+  display: inline-block; }
+
+/* line 174, ../../sass/_base.scss */
+.add-meal {
+  margin: 0 auto; }
+
+/* line 177, ../../sass/_base.scss */
+.no-meal-item {
+  padding-top: 40px;
+  padding-bottom: 10px;
+  width: 100%; }
+  @media only screen and (max-width: 40em) {
+    /* line 177, ../../sass/_base.scss */
+    .no-meal-item {
+      padding-top: 0px; } }
+
+/* line 183, ../../sass/_base.scss */
+.wrap {
+  display: inline-block; }

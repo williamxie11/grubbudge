@@ -6,7 +6,9 @@ h1 {
   font-size: 2.2rem;
   color: lighten($orange, 25);
 }
-
+body{
+  background:url('//demosthenes.info/assets/images/polina.jpg');
+}
 .name{
   background-color:$trans2;
 }
@@ -15,7 +17,7 @@ h1 {
   color: $blue;
 }
 video { 
-  position: fixed;
+  position: fixed; 
   bottom: 0;
   min-width: 100%;
   min-height: 100%;
@@ -31,6 +33,9 @@ video {
 }
 .currencyinput input {
     border: 0;
+}
+#submit-button{
+  //position:relative;
 }
 #input{
   
@@ -75,7 +80,9 @@ video {
   padding-bottom:10px;
   display:inline-block;
   background-color:$silver;
-  position:relative;
+}
+.meal{
+  margin-top: 10px;
 }
 .block{
   background-color:$white;
@@ -87,6 +94,23 @@ video {
   margin:0 auto;
   width:70%;
   @media only screen and (max-width: 40em) {width:90% }
+}
+.line-break-white{
+  padding-top: 10px;
+  border-bottom:groove;
+  border-color:$white;
+  margin:0 auto;
+  width:80%;
+  @media only screen and (max-width: 40em) {width:90% }
+}
+.line-break-white-full{
+  padding-top: 10px;
+  border-bottom:groove;
+  border-color:$white;
+  border-width:2px;
+  margin:0 auto;
+  margin-bottom:5px;
+  width:100%;
 }
 .restaurant-title{
   color:$oil;
@@ -100,4 +124,62 @@ video {
 }
 .star-tag{
   margin-top: -15px;
+}
+.margin{
+  margin-left:5px;
+  margin-right:5px;
+}
+.center{
+  text-align: center;
+}
+.hidden{
+  visibility: hidden;
+}
+.meal-item{
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+  padding-right:10px;
+  display:inline-block;
+  background-color:$silver;
+  position:relative;
+}
+.time{
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+  padding-right:10px;
+  display:inline-block;
+  position:absolute;
+}
+.time-center{
+   padding-top:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+  padding-right:10px;
+  display:inline-block;
+  margin:0 auto;
+}
+.trans{
+  color:$trans2;
+}
+.meal a{
+  position:absolute;
+  right:15px;
+  z-index: 10;
+}
+.meal-name{
+  display: inline-block;
+}
+.add-meal{
+  margin:0 auto;
+}
+.no-meal-item{
+  padding-top:40px;
+  @media only screen and (max-width: 40em) {padding-top:0px }
+  padding-bottom:10px;
+  width:100%;
+}
+.wrap{
+  display:inline-block;
 }

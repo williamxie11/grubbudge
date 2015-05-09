@@ -117,17 +117,18 @@ $ghost       : #FAFAFA;
  $oil         : #333333;
 // $jet         : #222222;
 // $black       : #000000;
+$tumblr:#34495e;
 
 // We use these as default colors throughout
 // $primary-color: #008CBA;
 // $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
+ $alert-color:rgba(240, 65, 36, .8);
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
 
 // We use these to control various global styles
-$body-bg: #34495e;
+$body-bg: $tumblr;
 // $body-font-color: $jet;
 // $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
@@ -216,12 +217,12 @@ $header-font-color: $white;
 // $h6-font-size: 1rem;
 
 // We use these to control header size reduction on small screens
-$h1-font-reduction: rem-calc(24);
+$h1-font-reduction: rem-calc(18);
 $h2-font-reduction: rem-calc(22);
 // $h3-font-reduction: rem-calc(5);
  $h4-font-reduction: rem-calc(8);
-// $h5-font-reduction: 0;
-// $h6-font-reduction: 0;
+ $h5-font-reduction:0;
+ $h6-font-reduction:0; 
 
 // These control how subheaders are styled.
 // $subheader-line-height: 1.4;
@@ -426,7 +427,7 @@ $h2-font-reduction: rem-calc(22);
 // $include-html-button-classes: $include-html-classes;
 
 // We use these to build padding for buttons.
-// $button-tny: rem-calc(10);
+ $button-tny: rem-calc(.6);
 // $button-sml: rem-calc(14);
 // $button-med: rem-calc(16);
 // $button-lrg: rem-calc(18);

@@ -1,6 +1,6 @@
-var demoControllers = angular.module('demoControllers', []);
+var grubControllers = angular.module('grubControllers', []);
 
-demoControllers.controller('MealPlanController', ['$scope', 'CommonData'  , function($scope, CommonData) {
+grubControllers.controller('MealPlanController', ['$scope', 'CommonData'  , function($scope, CommonData) {
   $scope.data = "";
    $scope.displayText = ""
 
@@ -12,7 +12,7 @@ demoControllers.controller('MealPlanController', ['$scope', 'CommonData'  , func
 
 }]);
 
-demoControllers.controller('SecondController', ['$scope', 'CommonData' , function($scope, CommonData) {
+grubControllers.controller('SecondController', ['$scope', 'CommonData' , function($scope, CommonData) {
   $scope.data = "";
 
   $scope.getData = function(){
@@ -23,18 +23,60 @@ demoControllers.controller('SecondController', ['$scope', 'CommonData' , functio
 }]);
 
 
-demoControllers.controller('ListController', ['$scope', '$http', 'Llamas', '$window' , function($scope, $http,  Llamas, $window) {
-  
+grubControllers.controller('ListController', ['$scope', '$http', 'HomeFactory' , function($scope, $http,  HomeFactory) {
+    console.log('INSIDE LIST CONTROLLER');
+    $scope.queryData = HomeFactory.get();
+    //console.log($scope.queryData);
+    var myBudget = 30;
+    var myMealType = 0;
+    var category = 0;
 
+    var imageURL;
+    var rating;
+    var ratingURL;
 
+    HomeFactory.getMealList(myBudget, myMealType, category).success(function(data){
+          //console.log(data);
+          $scope.data = data.data;
+          console.log($scope.data[0].address);
+          //HomeFactory.set($scope.data);
+          //console.log(HomeFactory.getQueryVal());
+        })
 }]);
 
-demoControllers.controller('HomeController', ['$scope' , '$window' , function($scope, $window) {
+grubControllers.controller('HomeController', ['$scope' , '$window', 'HomeFactory',function($scope, $window, HomeFactory) {
+
+    /***** BUDGE SEARCH *****/
+    $scope.budgeSearch = function () {
+        console.log('Someone made a budgy search query');
+        var myBudget = $scope.asad;
+        var myMealType = $scope.MealType;
+        var category = $scope.category;
+        //myBudget = $('#budget').val();
+        console.log('my price is ' + myBudget);
+        console.log(myMealType);
+        console.log('my category is' + category);
+
+
+        HomeFactory.getMealList(myBudget, myMealType, category).success(function(data){
+          //console.log(data);
+          $scope.data = data;
+          //console.log($scope.data);
+          HomeFactory.set($scope.data);
+          //console.log(HomeFactory.getQueryVal());
+        })
+
+        
+          // $scope.Shared = Shared;
+          // $scope.Shared.arr = $scope.data;
+    };
+
   $scope.url = $window.sessionStorage.baseurl;
 
   $scope.setUrl = function(){
-    $window.sessionStorage.baseurl = $scope.url; 
+    $window.sessionStorage.baseurl = $scope.url;
     $scope.displayText = "URL set";
+
 
   };
 
