@@ -27,7 +27,7 @@ grubControllers.controller('ListController', ['$scope', '$http', 'HomeFactory' ,
     //console.log('INSIDE LIST CONTROLLER');
     //$scope.queryData = HomeFactory.get();
     //console.log($scope.queryData);
-    var myBudget = 3;
+    var myBudget = 1;
     var myMealType = 0;
     var category = 0;
 

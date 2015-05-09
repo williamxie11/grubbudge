@@ -41,7 +41,7 @@ angular.module('grubServices', [])
                 var myCategory = String(category);
 
                 console.log('The QUERY is ' + baseUrl + '/restaurants?where={"price":{"$lte":"'+price+'"}}');
-                return $http.get(baseUrl + '/restaurants?where={"price":{"$lte":' + price + '}, "mealType":[' + myMealType + ']}');
+                return $http.get(baseUrl + '/restaurants?where={"price":{"$lte":' + price + '}}');//, "mealType":[' + myMealType + ']}');
             }
             // },
             //   getQueryVal : function() {
