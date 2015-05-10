@@ -30,7 +30,7 @@ grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'Ho
     var category = $rootScope.queryCategory;
     var date = $rootScope.queryDate;
     $rootScope.limit = 10;
-    $rootScope.len = 0;
+    //$rootScope.len = 0;
 
     console.log('price is '+myBudget+ ' mealType is '+myMealType+' category is '+category+' date is '+date);
 
@@ -38,10 +38,10 @@ grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'Ho
       $scope.data = data.data;
       console.log($scope.data.length);
     })
-    
     .error(function(data){
       console.log('got an error');
     })
+
     $scope.selectRestaurant = function() {
           var restaurantID = this.restaurant._id;
 
@@ -54,7 +54,8 @@ grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'Ho
         if($rootScope.skip < 0)
           $rootScope.skip = 0;
 
-        HomeFactory.getMealList(myBudget, myMealType, category, $rootScope.skip)
+        var lim;
+        HomeFactory.getMealList(myBudget, myMealType, category, $rootScope.skip, lim)
               .success(function(data){
                 $scope.data = data.data;
                 console.log($scope.data.length);
@@ -69,18 +70,19 @@ grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'Ho
       var newLength = $rootScope.skip + $rootScope.limit;
       console.log('newLength is ' + newLength);
 
-      HomeFactory.getMealList(myBudget, myMealType, category, 0, 20).success(function(temp){
+      HomeFactory.getMealList($rootScope.queryBudget, $rootScope.queryMealType, $rootScope.queryCategory, 0, 20).success(function(temp){
           $rootScope.len = temp.data.length;
           console.log($rootScope.len);
 
-          //console.log('len is ' + $rootScope.len);
-          if(newLength < $rootScope.len){
+          console.log('len is ' + $rootScope.len);
+          if($rootScope.skip + $rootScope.limit < $rootScope.len){
             $rootScope.skip += $rootScope.limit;
             //console.log('length is '+ $rootScope.len);
             //console.log(' new val of skip is ' + $rootScope.skip);
           }
 
-          HomeFactory.getMealList(myBudget, myMealType, category, $rootScope.skip)
+          var lim;
+          HomeFactory.getMealList($rootScope.queryBudget, $rootScope.queryMealType, $rootScope.queryCategory, $rootScope.skip, lim)
               .success(function(data){
                 $scope.data = data.data;
                 console.log($scope.data.length);

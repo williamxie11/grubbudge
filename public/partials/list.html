@@ -3,49 +3,36 @@
   <!--Input Form-->	
 	<form data-abide>
    <div id="input-list" class="row">
-    <!--Empty Space-->
-        <div class="small-1 columns">&nbsp;
-        </div>
+        <!--Empty Space-->
+        <div class="small-1 columns">&nbsp;</div>
         <!--Budget Input-->
         <div class="medium-2 columns">
           <div class="row collapse prefix-round">
-            <div class="small-2 columns">
-              <span class="prefix">$</span>
-            </div>
-            <div class="small-10 columns">
-              <input type="number" required pattern="number" placeholder="Budget">
-            </div>
+            <div class="small-2 columns"><span class="prefix">$</span></div>
+            <div class="small-10 columns"><input type="number" required pattern="number" placeholder="Budget"></div>
           </div>
         </div>
-        <!--Meal Time Input-->
+        <!--MealType-->
         <div class="medium-3 columns">
           <select>
-          <option value="volvo">Meal Time</option>
           <option value="saab">Breakfast</option>
           <option value="opel">Lunch</option>
           <option value="audi">Dinner</option>
           <option value="audi">Late Night</option>
         </select>
         </div>
-        
         <!--Search Input-->
-        <div class="medium-3 columns">
-          <input type="text" placeholder="Food category? eg. bbq">
-        </div>
-
+        <div class="medium-3 columns"><input type="text" placeholder="Food category? eg. bbq"></div>
         <!--Date Input-->
-        <div class="medium-2 columns">
-          <datepicker><input placeholder="Date" ng-model="date" type="text"/></datepicker>
-        </div>
-
+        <div class="medium-2 columns"><datepicker><input placeholder="Date" ng-model="date" type="text"/></datepicker></div>
         <!--Empty Space-->
         <div class="small-1 columns">&nbsp;</div>
 
         <!--Sort Dropdown, used grid to force to right side-->
         <div class="row">
           <div class="medium-10 columns hide-for-small-only">&nbsp;</div>
-        <div class="small-centered medium-5 columns">
-          <label class="small-5 columns">Order by:
+        <div class=" lab small-centered medium-5 columns">
+          <label class="lab small-5 columns">Order by:
             <select>
               <option value="cheapest">Cheapest</option>
               <option value="mostExpensive">Most Expensive</option>
@@ -53,7 +40,8 @@
             </select>
           </label>
           
-          <label class="small-5 columns">Order by: 
+          <!--LIST SEARCHHHHHHHHHHHHH-->
+          <label class="lab small-5 columns">Order by: 
             <select  id="order-by">
               <option value="asc">Ascending</option>
               <option value="desc">Descending</option>
@@ -63,12 +51,11 @@
         </div>
         
         <div class="small-centered medium-10 columns">
-          <button ng-click="prev()">Prev</button>
-          <button class="large-offset-5" ng-click="next()">Next</button>
+          <button class="but" ng-click="prev()">Prev</button>
+          <button class="but large-offset-5" ng-click="next()">Next</button>
         </div>
       </div>
-      </div>
-      
+  </div>    
 </form>
 
           <!--           ASAD:                 IF LOGGED IN (Go to meal plan) ELSE (display loginContinue Modal)    -->

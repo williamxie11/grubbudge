@@ -32,8 +32,8 @@ angular.module('grubServices', [])
                 var q;
 
                 // ,"categories":"sushi%20bars"
-                var q1 = baseUrl + '/restaurants?limit=10&skip=' + skip + ',where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '","categories":"' + myCategory + '"}';
-                var q2 = baseUrl + '/restaurants?limit=10&skip=' + skip + ',where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '"}';
+                var q1 = baseUrl + '/restaurants?limit=10&skip=' + skip + '&where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '","categories":"' + myCategory + '"}';
+                var q2 = baseUrl + '/restaurants?limit=10&skip=' + skip + '&where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '"}';
                 var temp1 = baseUrl + '/restaurants?where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '","categories":"' + myCategory + '"}';
                 var temp2 = baseUrl + '/restaurants?where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '"}';
 
