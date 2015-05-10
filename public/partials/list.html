@@ -9,22 +9,22 @@
         <div class="medium-2 columns">
           <div class="row collapse prefix-round">
             <div class="small-2 columns"><span class="prefix">$</span></div>
-            <div class="small-10 columns"><input type="number" required pattern="number" placeholder="Budget"></div>
+            <div class="small-10 columns"><input ng-model="asad" type="text" placeholder="Budget"></div>
           </div>
         </div>
         <!--MealType-->
         <div class="medium-3 columns">
-          <select>
-          <option value="saab">Breakfast</option>
-          <option value="opel">Lunch</option>
-          <option value="audi">Dinner</option>
-          <option value="audi">Late Night</option>
-        </select>
+          <select ng-model="MealType">
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="latenight">Late Night</option>
+          </select>
         </div>
         <!--Search Input-->
-        <div class="medium-3 columns"><input type="text" placeholder="Food category? eg. bbq"></div>
+        <div class="medium-3 columns"><input ng-model="category" type="text" placeholder="Food category? eg. barbeque, pizza etc"></div>
         <!--Date Input-->
-        <div class="medium-2 columns"><datepicker><input placeholder="Date" ng-model="date" type="text"/></datepicker></div>
+        <div class="medium-2 columns"><datepicker><input ng-model="date" placeholder="Date" ng-model="date" type="text"/></datepicker></div>
         <!--Empty Space-->
         <div class="small-1 columns">&nbsp;</div>
 

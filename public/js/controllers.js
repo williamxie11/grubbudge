@@ -22,6 +22,9 @@ grubControllers.controller('SecondController', ['$scope', 'CommonData' , functio
 
 }]);
 
+grubControllers.controller('MealPlanController',['$scope', '$rootScope','$http', 'HomeFactory' , function($scope, $rootScope,$http,  HomeFactory){
+    
+}
 
 grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactory' , function($scope, $rootScope,$http,  HomeFactory) {
 
@@ -42,8 +45,44 @@ grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'Ho
       console.log('got an error');
     })
 
+    $scope.listSearch = function(){
+        var myBudget = $scope.asad;
+        $rootScope.queryMealType = $scope.MealType;
+        $rootScope.queryCategory = $scope.category;
+        $rootScope.queryDate = $scope.date;
+
+        // initial value of skip
+        $rootScope.skip = 0;
+
+        // check MealType
+        if (!myBudget || !$rootScope.queryMealType || !$rootScope.queryDate)
+          alert('Please enter valid inputs for BUDGET, MEALTYPE and DATE');
+        else {
+          // set price level
+          if (myBudget <= 10)
+            myBudget = 1;
+          else if (myBudget <= 20)
+            myBudget = 2;
+          else if (myBudget <= 30)
+            myBudget = 3;
+          else
+            myBudget = 4;
+
+        $rootScope.queryBudget = myBudget;
+
+        HomeFactory.getMealList($rootScope.queryBudget, $rootScope.queryMealType, $rootScope.queryCategory, $rootScope.skip).success(function(data){
+          $scope.data = data.data;
+          console.log($scope.data.length);
+          })
+          .error(function(data){
+            console.log('got an error');
+          })
+        }
+    }
+
     $scope.selectRestaurant = function() {
           var restaurantID = this.restaurant._id;
+          $rootScope.currRestaurant = restaurantID;
 
           console.log(restaurantID);
     }
@@ -55,7 +94,7 @@ grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'Ho
           $rootScope.skip = 0;
 
         var lim;
-        HomeFactory.getMealList(myBudget, myMealType, category, $rootScope.skip, lim)
+        HomeFactory.getMealList($rootScope.queryBudget, $rootScope.queryMealType, $rootScope.queryCategory, $rootScope.skip, lim)
               .success(function(data){
                 $scope.data = data.data;
                 console.log($scope.data.length);
@@ -95,6 +134,8 @@ grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'Ho
 }]);
 
 grubControllers.controller('HomeController', ['$scope' , '$rootScope', '$window', 'HomeFactory',function($scope, $rootScope, $window, HomeFactory) {
+    /***** SET USER ID *******/
+    $rootScope.userID = '554fd3584de62f8e08738104';
 
     /***** BUDGE SEARCH *****/
     $scope.budgeSearch = function () {
