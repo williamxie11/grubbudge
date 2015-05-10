@@ -12,9 +12,6 @@ angular.module('grubServices', [])
         }
     })
     .factory('Llamas', function($http, $window) {      
-       // var mealQuery = {
-        //};
-
         return {
             get : function() {
                 var baseUrl = $window.sessionStorage.baseurl;
@@ -27,13 +24,34 @@ angular.module('grubServices', [])
  
            return {
            
-            getMealList : function(price, mealType, category) {
+            getMealList : function(price, mealType, category, pageSkip, limit) {
                 var myPrice = String(price);
                 var myMealType = String(mealType);
                 var myCategory = String(category);
+                var skip = pageSkip;
+                var q;
 
-                console.log('The QUERY is ' + baseUrl + '/restaurants?where={"price":{"$lte":"'+price+'"}}');
-                return $http.get(baseUrl + '/restaurants?where={"price":{"$lte":' + price + '}}');//, "mealType":[' + myMealType + ']}');
+                // ,"categories":"sushi%20bars"
+                var q1 = baseUrl + '/restaurants?limit=10&skip=' + skip + ',where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '","categories":"' + myCategory + '"}';
+                var q2 = baseUrl + '/restaurants?limit=10&skip=' + skip + ',where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '"}';
+                var temp1 = baseUrl + '/restaurants?where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '","categories":"' + myCategory + '"}';
+                var temp2 = baseUrl + '/restaurants?where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '"}';
+
+                if (!limit){
+                    if(!myCategory)
+                        q = q2;
+                    else 
+                        q = q1;
+                }
+                else{
+                    if (!myCategory)
+                        q = temp2;
+                    else
+                        q = temp1;
+                }
+
+                console.log('The QUERY here is ' + q);
+                return $http.get(q);
             },
 
             postMeal : function(mealData) {

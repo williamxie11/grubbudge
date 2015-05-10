@@ -44,17 +44,29 @@
         <!--Sort Dropdown, used grid to force to right side-->
         <div class="row">
           <div class="medium-10 columns hide-for-small-only">&nbsp;</div>
-        <div class="small-centered medium-3 columns">
-          <select>
-            <option value="volvo">Sort By</option>
-            <option value="cheapest">Cheapest</option>
-            <option value="mostExpensive">Most Expensive</option>
-            <option value="highestRating">Highest Rating</option>
-          </select>
+        <div class="small-centered medium-5 columns">
+          <label class="small-5 columns">Order by:
+            <select>
+              <option value="cheapest">Cheapest</option>
+              <option value="mostExpensive">Most Expensive</option>
+              <option value="highestRating">Highest Rating</option>
+            </select>
+          </label>
+          
+          <label class="small-5 columns">Order by: 
+            <select  id="order-by">
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+          </label><br>
           <button ng-click="listSearch()">Search</button>
         </div>
-
-    </div>
+        
+        <div class="small-centered medium-10 columns">
+          <button ng-click="prev()">Prev</button>
+          <button class="large-offset-5" ng-click="next()">Next</button>
+        </div>
+      </div>
       </div>
       
 </form>
