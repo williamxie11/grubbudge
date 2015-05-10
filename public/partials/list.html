@@ -27,35 +27,36 @@
           <option value="audi">Late Night</option>
         </select>
         </div>
+        
         <!--Search Input-->
         <div class="medium-3 columns">
-          <input type="text" placeholder="What are you looking for?">
+          <input type="text" placeholder="Food category? eg. bbq">
         </div>
+
         <!--Date Input-->
         <div class="medium-2 columns">
-          <datepicker>
-            <input placeholder="Date" ng-model="date" type="text"/>
-          </datepicker>
+          <datepicker><input placeholder="Date" ng-model="date" type="text"/></datepicker>
         </div>
+
         <!--Empty Space-->
-        <div class="small-1 columns">&nbsp;
-        </div>
+        <div class="small-1 columns">&nbsp;</div>
 
         <!--Sort Dropdown, used grid to force to right side-->
         <div class="row">
-          <div class="medium-10 columns hide-for-small-only">&nbsp;
-        </div>
-        <div class="medium-2 columns">
+          <div class="medium-10 columns hide-for-small-only">&nbsp;</div>
+        <div class="small-centered medium-3 columns">
           <select>
-          <option value="volvo">Sort By</option>
-          <option value="saab">Cheapest</option>
-          <option value="opel">Most Expensive</option>
-          <option value="opel">Highest Rating</option>
-        </select>
+            <option value="volvo">Sort By</option>
+            <option value="cheapest">Cheapest</option>
+            <option value="mostExpensive">Most Expensive</option>
+            <option value="highestRating">Highest Rating</option>
+          </select>
+          <button ng-click="listSearch()">Search</button>
         </div>
+
     </div>
       </div>
-      <button>Search</button>
+      
 </form>
 
           <!--           ASAD:                 IF LOGGED IN (Go to meal plan) ELSE (display loginContinue Modal)    -->
@@ -85,23 +86,26 @@
 
 
       <!--Restaurant Item-->
-      <div class="list-item">
+      <div ng-repeat="restaurant in data" class="list-item">
       	<div class="row" >
           <div class="item-bg">
           	<div class="medium-6 large-3 columns">
-          		<img src="{{imageURL}}" alt="img not found">
+          		<img ng-src="{{restaurant.image}}" alt="img not found">
           	</div>
 
       	<div class="medium-6 large-9 columns">
           <!--ASAD: IF LOGGED IN (Go to meal plan) ELSE (display loginContinue Modal)-->
           <a href="#/mealplan" class="button success addedMeal"><i class="fa fa-check"></i>&nbsp;Budge It!</a>
-      		<h3 class="restaurant-title">{{name}}</h3>
-      		<div class="star"></div>
-      		  <script></script>
-      		<h5 class = "restaurant-review"><i>$$$</i></h5>
+      		<h3 class="restaurant-title">{{restaurant.name}}</h3>
+          <p><i>{{restaurant.mealType[0]}} &nbsp {{restaurant.mealType[1]}} &nbsp {{restaurant.mealType[2]}} &nbsp {{restaurant.mealType[3]}}</i></p>
+      		<div class="star">
+              <span><i>Rating:</i> </span><img ng-src="{{restaurant.ratingURL}}" alt="asad"/><br>
+              <span><i>Price Level (range 1-4):</i> <b>{{restaurant.price}}</b></span><br>
+          </div>
+      		<h5 class = "restaurant-review"></h5>
           <p><i>
-            {{address}} <br> 
-            Categories: {{categories[0]}}, {{categories[1]}}
+            {{restaurant.address}} <br> 
+            Categories: {{restaurant.categories[0]}}, {{restaurant.categories[1]}}
           </i></p>
       		</div>
         </div>
