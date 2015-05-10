@@ -95,7 +95,7 @@
 
       	<div class="medium-6 large-9 columns">
           <!--ASAD: IF LOGGED IN (Go to meal plan) ELSE (display loginContinue Modal)-->
-          <a href="#/mealplan" class="button success addedMeal"><i class="fa fa-check"></i>&nbsp;Budge It!</a>
+          <a ng-click="selectRestaurant()" href="#/mealplan" class="button success addedMeal"><i class="fa fa-check"></i>&nbsp;Budge It!</a>
       		<h3 class="restaurant-title">{{restaurant.name}}</h3>
           <p><i>{{restaurant.mealType[0]}} &nbsp {{restaurant.mealType[1]}} &nbsp {{restaurant.mealType[2]}} &nbsp {{restaurant.mealType[3]}}</i></p>
       		<div class="star">

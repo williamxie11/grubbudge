@@ -49,6 +49,10 @@ grubControllers.controller('ListController', ['$scope', '$http', 'HomeFactory' ,
           $scope.categories = $scope.data[0].categories;
         })
 
+    $scope.selectRestaurant = function() {
+          console.log(this.restaurant);
+    }
+
 
 }]);
 
