@@ -24,33 +24,23 @@ angular.module('grubServices', [])
     })
     .factory('HomeFactory', function($http, $window) {
            baseUrl = 'http://104.236.235.68:4000/api';
-           var savedData = {}
-           function set(data){
-              savedData = data;
-           }
-           function get(){
-                return savedData;
-           }
+ 
            return {
-            set : set,
-            get : get,
            
-           getMealList : function(price, mealType, category) {
+            getMealList : function(price, mealType, category) {
                 var myPrice = String(price);
                 var myMealType = String(mealType);
                 var myCategory = String(category);
 
                 console.log('The QUERY is ' + baseUrl + '/restaurants?where={"price":{"$lte":"'+price+'"}}');
                 return $http.get(baseUrl + '/restaurants?where={"price":{"$lte":' + price + '}}');//, "mealType":[' + myMealType + ']}');
+            },
+
+            postMeal : function(mealData) {
+                console.log(mealData);
+                return $http.post(baseUrl + '/mealplans', mealData);
             }
-            // },
-            //   getQueryVal : function() {
-            //     return mealQuery;
-            //   },
-            //   setQueryVal : function(data) {
-            //     mealQuery = data;
-            //   }
-        }
+         }
     })
     .factory('Shared', function(){
         return {};
