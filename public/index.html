@@ -25,6 +25,7 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
+      <li class="has-form"><a class="button round secondary" href="#/mealplan">My Mealplans</a></li>
       <!--Login Button visible when user not logged in, logout when user is signed in -->
       <li class ="has-form"><a class="button round secondary" href="/logout">Logout</a></li>
     </ul>
@@ -32,15 +33,6 @@
     <!-- Left Nav Section -->
   </section>
 </nav>
-
-<!--Login Modal "login" tied to login button-->
-<div id="login-bar" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
- <h3 id="modalTitle">Login or Signup</h3>
- <input placeholder="Username" type="text">
-  <input placeholder="Password" type="text">
-      <a href="#" class="button round modal-button">Go</a>
-  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</div>
 
 <!--Route Display -->
 <div ng-view angularDirective></div>

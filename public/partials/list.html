@@ -1,7 +1,6 @@
 <div class="list" ng-controller='ListController'>
 
-  <!--Input Form-->
-	<form data-abide>
+  <form data-abide>
    <div id="input-list" class="row">
         <!--Empty Space-->
         <div class="small-1 columns">&nbsp;</div>
@@ -28,42 +27,52 @@
         <!--Empty Space-->
         <div class="small-1 columns">&nbsp;</div>
 
+      </div>
+      
+
         <!--Sort Dropdown, used grid to force to right side-->
         <div class="row">
-          <div class="medium-10 columns hide-for-small-only">&nbsp;</div>
-        <div class=" lab small-centered medium-5 columns">
-          <label class="lab small-5 columns">Order by:
-            <select>
-              <option value="cheapest">Cheapest</option>
-              <option value="mostExpensive">Most Expensive</option>
-              <option value="highestRating">Highest Rating</option>
+          <div class="medium-4 columns hide-for-small-only">&nbsp;</div>
+        <div class="small-6 medium-2 columns lab center">
+          <label class="lab">Sort by:
+            <select ng-model="sortBy">
+              <option value="name">Name</option>
+              <option value="rating">Rating</option>
+              <option value="price">Price</option>
             </select>
           </label>
+        </div>
 
           <!--LIST SEARCHHHHHHHHHHHHH-->
-          <label class="lab small-5 columns">Order by:
-            <select  id="order-by">
+          <div class="small-6 medium-2 columns lab center">
+          <label class="lab">Order by:
+            <select  id="order-by" ng-model="orderBy">
               <option value="asc">Ascending</option>
               <option value="desc">Descending</option>
             </select>
-          </label><br>
-          <button ng-click="listSearch()">Search</button>
+          </label>
         </div>
+        <div class="medium-4 columns hide-for-small-only">&nbsp;</div>
+        </div>
+            <!--Button to go to List View-->
+            <div class="row">
+          <div class="small-12 center columns">
+            <a ng-click="listSearch()" class="button">Search</a>
+          </div>
+      </div>
 
-        <div class="small-centered medium-10 columns">
-          <button class="but" ng-click="prev()">Prev</button>
-          <button class="but large-offset-5" ng-click="next()">Next</button>
+        
+      <div class="row">
+        <div class="small-6 center columns">
+          <button class="but left-but" ng-click="prev()">Prev</button>
+        </div>
+        <div class="small-6 columns">
+          <button class="but right-but" ng-click="next()">Next</button>
         </div>
       </div>
-  </div>
+
 </form>
 
-          <!--           ASAD:                 IF LOGGED IN (Go to meal plan) ELSE (display loginContinue Modal)    -->
-
-<!-- *************************************************************************************** -->
-<!-- *************************************************************************************** -->
-<!-- *************************************************************************************** -->
-<!-- *************************************************************************************** -->
 
       <!--Restaurant Item-->
       <div ng-repeat="restaurant in data" class="list-item">

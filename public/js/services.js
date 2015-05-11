@@ -24,34 +24,41 @@ angular.module('grubServices', [])
 
            return {
 
-            getMealList : function(price, mealType, category, pageSkip, limit) {
+            getMealList : function(price, mealType, category, pageSkip, limit, sort, order, check) {
                 var myPrice = String(price);
                 var myMealType = String(mealType);
                 var myCategory = String(category);
                 var skip = pageSkip;
                 var q;
+                
+                if(!sort)
+                    sort = "name";
+                if (!order)
+                    order = 1;
 
                 // ,"categories":"sushi%20bars"
-                var q1 = baseUrl + '/restaurants?limit=10&skip=' + skip + '&where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '","categories":"' + myCategory + '"}';
-                var q2 = baseUrl + '/restaurants?limit=10&skip=' + skip + '&where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '"}';
-                var temp1 = baseUrl + '/restaurants?where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '","categories":"' + myCategory + '"}';
-                var temp2 = baseUrl + '/restaurants?where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '"}';
+                var q1 = baseUrl + '/restaurants?sort={"' +sort+ '":' +order+  '}&limit=10&skip=' + skip + '&where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '","categories":"' + myCategory + '"}';
+                var q2 = baseUrl + '/restaurants?sort={"' +sort+ '":' +order+ '}&limit=10&skip=' + skip + '&where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '"}';
+                var temp1 = baseUrl + '/restaurants?sort={"' +sort+ '":' +order+ '}&where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '","categories":"' + myCategory + '"}&count=true';
+                var temp2 = baseUrl + '/restaurants?sort={"' +sort+ '":' +order+ '}&where={"price":{"$lte":' + price + '},"mealType":"' + myMealType + '"}&count=true';
 
-                if (!limit){
                     if(!myCategory)
                         q = q2;
                     else
                         q = q1;
-                }
-                else{
-                    if (!myCategory)
+
+                if(check)
+                     if(!myCategory)
                         q = temp2;
                     else
                         q = temp1;
-                }
 
                 console.log('The QUERY here is ' + q);
                 return $http.get(q);
+            },
+
+            getRestaurants : function(query) {
+                return $http.get(query);
             },
 
             createMealPlan : function(mealData) {

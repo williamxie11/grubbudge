@@ -35,81 +35,92 @@ grubApp.controller('MealPlanController',['$scope', '$rootScope','$http', 'HomeFa
     $rootScope.queryMealType;
     $scope.restaurantList = [];
     
-    HomeFactory.getMealPlan($rootScope.mealPlanID).success(function(data){
-        $scope.yourMP = data.data;
-        $scope.planName = $scope.yourMP.name;
-        var planDate = new Date($scope.yourMP.planDate);
-        $scope.dateString = planDate.toDateString();
-        $scope.restaurantList = [];
-        $scope.typeLength = [false, false, false, false];
+    if($rootScope.user.mealPlans.length > 0){
+      HomeFactory.getMealPlan($rootScope.user.mealPlans[0]).success(function(data){
+          $scope.yourMP = data.data;
+          $scope.planName = $scope.yourMP.name;
+          var planDate = new Date($scope.yourMP.planDate);
+          $scope.dateString = planDate.toDateString();
+          $scope.restaurantList = [];
+          $scope.typeLength = [false, false, false, false];
 
-          if($scope.yourMP.breakfastID){
-            HomeFactory.getRestaurantInfo($scope.yourMP.breakfastID).success(function(data){
-                data.data.typeTitle = "Breakfast";
-                $scope.restaurantList.push(data.data);
-                console.log(data.data);
-                $scope.typeLength[0]= false;
-            })
-            .error(function(err)
-              {
-                console.log('error getting rest info');
+            if($scope.yourMP.breakfastID){
+              HomeFactory.getRestaurantInfo($scope.yourMP.breakfastID).success(function(data){
+                  data.data.typeTitle = "Breakfast";
+                  $scope.restaurantList.push(data.data);
+                  console.log(data.data);
+                  $scope.typeLength[0]= false;
               })
-          }
-          else {
-            $scope.typeLength[0] = true;
-          }
-          if($scope.yourMP.lunchID){
-            HomeFactory.getRestaurantInfo($scope.yourMP.lunchID).success(function(data){
-                data.data.typeTitle = "Lunch";
-                $scope.restaurantList.push(data.data);
-                console.log(data.data);
-                $scope.typeLength[1] = false;
-            })
-            .error(function(err)
-              {
-                console.log('error getting rest info');
+              .error(function(err)
+                {
+                  console.log('error getting rest info');
+                })
+            }
+            else {
+              $scope.typeLength[0] = true;
+            }
+            if($scope.yourMP.lunchID){
+              HomeFactory.getRestaurantInfo($scope.yourMP.lunchID).success(function(data){
+                  data.data.typeTitle = "Lunch";
+                  $scope.restaurantList.push(data.data);
+                  console.log(data.data);
+                  $scope.typeLength[1] = false;
               })
-          }
-          else {
-              $scope.typeLength[1] = true;
+              .error(function(err)
+                {
+                  console.log('error getting rest info');
+                })
+            }
+            else {
+                $scope.typeLength[1] = true;
+              }
+
+            if($scope.yourMP.dinnerID){
+              HomeFactory.getRestaurantInfo($scope.yourMP.dinnerID).success(function(data){
+                  data.data.typeTitle = "Dinner";               
+                  $scope.restaurantList.push(data.data);
+                  console.log(data.data);
+                  $scope.typeLength[2] = false;
+              })
+              .error(function(err)
+                {
+                  console.log('error getting rest info');
+                })
+            }
+            else {
+              $scope.typeLength[2] = true;
+            }
+            if($scope.yourMP.lateID){
+              HomeFactory.getRestaurantInfo($scope.yourMP.lateID).success(function(data){
+                  data.data.typeTitle = "Late Night";
+                  $scope.restaurantList.push(data.data);
+                  console.log(data.data);
+                  $scope.typeLength[3] = false;
+              })
+              .error(function(err)
+                {
+                  console.log('error getting rest info');
+                })
+            }
+            else {
+              $scope.typeLength[3] = true;
             }
 
-          if($scope.yourMP.dinnerID){
-            HomeFactory.getRestaurantInfo($scope.yourMP.dinnerID).success(function(data){
-                data.data.typeTitle = "Dinner";               
-                $scope.restaurantList.push(data.data);
-                console.log(data.data);
-                $scope.typeLength[2] = false;
-            })
-            .error(function(err)
-              {
-                console.log('error getting rest info');
-              })
-          }
-          else {
-            $scope.typeLength[2] = true;
-          }
-          if($scope.yourMP.lateID){
-            HomeFactory.getRestaurantInfo($scope.yourMP.lateID).success(function(data){
-                data.data.typeTitle = "Late Night";
-                $scope.restaurantList.push(data.data);
-                console.log(data.data);
-                $scope.typeLength[3] = false;
-            })
-            .error(function(err)
-              {
-                console.log('error getting rest info');
-              })
-          }
-          else {
-            $scope.typeLength[3] = true;
-          }
-    })
+            $scope.deleteRestaurant = function(restaurant){
+              console.log(this.restaurant.name);
+            };
+      })
 
     HomeFactory.getRestaurantInfo($rootScope.currRestaurant).success(function(data){
       $scope.res = data.data;
       console.log($scope.res);
     });
+  }
+  else
+  {
+    alert("You have no meal plans at the moment!");
+    window.location.assign('http://localhost:4000/#/home');
+  }
 
   }]);
 
@@ -236,7 +247,7 @@ grubApp.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactor
 
        console.log('price is '+myBudget+ ' mealType is '+myMealType+' category is '+category+' date is '+date);
 
-       HomeFactory.getMealList(myBudget, myMealType, category, $rootScope.skip).success(function(data){
+       HomeFactory.getMealList(myBudget, myMealType, category, $rootScope.skip, $rootScope.limit, $rootScope.sortBy, $rootScope.orderBy, false).success(function(data){
          $scope.data = data.data;
          console.log($scope.data.length);
        })
@@ -244,11 +255,23 @@ grubApp.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactor
          console.log('got an error');
        })
 
+
+
        $scope.listSearch = function(){
            var myBudget = $scope.asad;
            $rootScope.queryMealType = $scope.MealType;
            $rootScope.queryCategory = $scope.category;
            $rootScope.queryDate = $scope.date;
+           var sort = $scope.sortBy;
+           if($scope.orderBy == "asc")
+              var order = 1;
+           else
+              var order = -1;
+
+            if(!$scope.sortBy){
+              sort = "name";
+            }
+           var baseUrl = 'http://104.236.235.68:4000/api';
 
            // initial value of skip
            $rootScope.skip = 0;
@@ -267,53 +290,69 @@ grubApp.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactor
              else
                myBudget = 4;
 
-           $rootScope.queryBudget = myBudget;
+            $rootScope.queryBudget = myBudget;
+            if (!$rootScope.queryCategory){
+              baseUrl += '/restaurants?limit=10&skip=' + $rootScope.skip + 
+                          '&where={"price":{"$lte":' + $rootScope.queryBudget + '},"mealType":"' 
+                          + $rootScope.queryMealType + '","categories":"' + $rootScope.queryCategory + '"}&sort={"';
+            }
+            else {
+              baseUrl += '/restaurants?limit=10&skip=' + $rootScope.skip + 
+                          '&where={"price":{"$lte":' + $rootScope.queryBudget + '},"mealType":"' 
+                          + $rootScope.queryMealType + '"}&sort={"';
+            }
+ 
+              baseUrl += String(sort) + '":' + String(order) + '}';
 
-           HomeFactory.getMealList($rootScope.queryBudget, $rootScope.queryMealType, $rootScope.queryCategory, $rootScope.skip).success(function(data){
+          $rootScope.orderBy = order;
+          $rootScope.sortBy = sort;
+          // console.log("MY QUERY IS " + baseUrl);
+           HomeFactory.getRestaurants(baseUrl).success(function(data){
              $scope.data = data.data;
-             console.log($scope.data.length);
-             })
-             .error(function(data){
+             //console.log($scope.data.length);
+           })
+            .error(function(data){
                console.log('got an error');
              })
            }
        }
 
+
+
        $scope.prev = function() {
-           $rootScope.skip -= $rootScope.limit;
+           if($rootScope.skip - $rootScope.limit < 0)
+              $rootScope.skip = 0;
+            else
+              $rootScope.skip -= $rootScope.limit;
 
-           if($rootScope.skip < 0)
-             $rootScope.skip = 0;
-
-           var lim;
-           HomeFactory.getMealList($rootScope.queryBudget, $rootScope.queryMealType, $rootScope.queryCategory, $rootScope.skip, lim)
+           //var lim;
+           HomeFactory.getMealList($rootScope.queryBudget, $rootScope.queryMealType, $rootScope.queryCategory, $rootScope.skip, 10, $rootScope.sortBy, $rootScope.orderBy, false)
                  .success(function(data){
                    $scope.data = data.data;
-                   console.log($scope.data.length);
+                   //console.log($scope.data.length);
                  })
                  .error(function(data){
                    console.log('got an error');
                  })
        }
 
+
+
        $scope.next = function() {
          console.log('inside next');
          var newLength = $rootScope.skip + $rootScope.limit;
          console.log('newLength is ' + newLength);
 
-         HomeFactory.getMealList($rootScope.queryBudget, $rootScope.queryMealType, $rootScope.queryCategory, 0, 20).success(function(temp){
-             $rootScope.len = temp.data.length;
-             console.log($rootScope.len);
+         //var lim;
+         HomeFactory.getMealList($rootScope.queryBudget, $rootScope.queryMealType, $rootScope.queryCategory, 0, $rootScope.limit, $rootScope.sortBy, $rootScope.orderBy, true).success(function(temp){
+             $rootScope.len = temp.data;
 
              console.log('len is ' + $rootScope.len);
              if($rootScope.skip + $rootScope.limit < $rootScope.len){
                $rootScope.skip += $rootScope.limit;
-               //console.log('length is '+ $rootScope.len);
-               //console.log(' new val of skip is ' + $rootScope.skip);
              }
 
-             var lim;
-             HomeFactory.getMealList($rootScope.queryBudget, $rootScope.queryMealType, $rootScope.queryCategory, $rootScope.skip, lim)
+             HomeFactory.getMealList($rootScope.queryBudget, $rootScope.queryMealType, $rootScope.queryCategory, $rootScope.skip, $rootScope.limit, $rootScope.sortBy, $rootScope.orderBy, false)
                  .success(function(data){
                    $scope.data = data.data;
                    console.log($scope.data.length);
