@@ -20,6 +20,7 @@ angular.module('grubServices', [])
         }
     })
     .factory('HomeFactory', function($http, $window) {
+           //baseUrl = 'http://104.236.235.68:4000/api';
            baseUrl = 'http://localhost:4000/api';
 
            return {

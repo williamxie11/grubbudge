@@ -35,7 +35,7 @@
     <div class="row">
       <div class="medium-3 columns meal center" ng-repeat="res in restaurantList">
           <h2>{{res.typeTitle}}</h2>
-          <img src="{{res.image}}">
+          <a class="th" href="{{res.image}}"><img src="{{res.image}}"></a>
           <h3>{{res.name}}</h3>
           <button>Delete</button>
       </div>
