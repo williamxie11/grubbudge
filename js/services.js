@@ -54,13 +54,21 @@ angular.module('grubServices', [])
                 return $http.get(q);
             },
 
-            postMeal : function(mealData) {
+            createMealPlan : function(mealData) {
                 console.log(mealData);
                 return $http.post(baseUrl + '/mealplans', mealData);
             },
 
+            updateMealPlan : function(ID, update) {
+                return $http.put(baseUrl + '/mealplans/' + ID, update);
+            },
+
             getUserInfo : function(ID) {
                 return $http.get(baseUrl + '/users/' + ID);
+            },
+
+            updateUser : function(ID, update) {
+                return $http.put(baseUrl + '/users/' + ID, update);
             }
          }
     })

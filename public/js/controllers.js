@@ -29,7 +29,7 @@ grubControllers.controller('MealPlanController',['$scope', '$rootScope','$http',
 
 grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactory' , function($scope, $rootScope,$http,  HomeFactory) {
 
-    $rootScope.userID = '554fd3584de62f8e08738104';
+    $rootScope.userID = '55500c9df183f83f2e9f6aa1';
     /**** GO TO MEAL PLAN ****/
     $scope.selectRestaurant = function() {
           var restaurantID = this.restaurant._id;
@@ -41,17 +41,93 @@ grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'Ho
 
               // no existing mealPlans
               if(user.mealPlans.length == 0){
-                 var firstMealPlan = {
+
+                if($rootScope.queryMealType == "lunch"){
+                   var firstMealPlan = {
+                    name: "firstMealPlan",
+                    lunchID: String($rootScope.currRestaurant),
+                    planDate: $rootScope.queryDate,
+                    assignedUser: $rootScope.userID
+                   }
+               }
+               else if($rootScope.queryMealType == "breakfast"){
+                  var firstMealPlan = {
                   name: "firstMealPlan",
+                  breakfastID: String($rootScope.currRestaurant),
                   planDate: $rootScope.queryDate,
                   assignedUser: $rootScope.userID
                  }
+               }
+               else if($rootScope.queryMealType == "dinner"){
+                  var firstMealPlan = {
+                  name: "firstMealPlan",
+                  dinnerID: String($rootScope.currRestaurant),
+                  planDate: $rootScope.queryDate,
+                  assignedUser: $rootScope.userID
+                 }
+               }
+               else {
+                  var firstMealPlan = {
+                  name: "firstMealPlan",
+                  lateID: String($rootScope.currRestaurant),
+                  planDate: $rootScope.queryDate,
+                  assignedUser: $rootScope.userID
+                 }
+               }
 
                  //create a new mealPlan
                  HomeFactory.createMealPlan(firstMealPlan).success(function(data){
                     console.log(data.message);
                     $rootScope.mealPlanID = data.data._id;
+
+                    // updated user
+                    var updateObj = {
+                      mealPlans: $rootScope.mealPlanID
+                    }
+
+                    // add it to User
+                    HomeFactory.updateUser($rootScope.userID, updateObj)
+                      .success(function(data){
+                        console.log('user successfully updated');
+                        window.location.assign('http://localhost:3000/#/mealplan');
+                      }
+                    );
+
                  }).error(function(err){console.log('Error creating a new meal plan');})
+              }
+              // meal plans exist for that user
+              else
+              {
+                if($rootScope.queryMealType == "lunch"){
+                   var firstMealPlan = {
+                    lunchID: String($rootScope.currRestaurant)
+                   }
+               }
+               else if($rootScope.queryMealType == "breakfast"){
+                  var firstMealPlan = {
+                  breakfastID: String($rootScope.currRestaurant)
+                 }
+               }
+               else if($rootScope.queryMealType == "dinner"){
+                  var firstMealPlan = {
+                  dinnerID: String($rootScope.currRestaurant)
+                 }
+               }
+               else {
+                  var firstMealPlan = {
+                  lateID: String($rootScope.currRestaurant)
+                 }
+               }
+
+                // user should specify the meal plan
+                $rootScope.mealPlanID = user.mealPlans[0];
+
+                // update the specified meal plan
+                HomeFactory.updateMealPlan($rootScope.mealPlanID, firstMealPlan).success(function(data){
+                  console.log('successfully updatad users mealplan');
+                  window.location.assign('http://localhost:3000/#/mealplan');
+                }).error(function(err){console.log('error: meal plan could not get updated')})
+
               }
           })
 
