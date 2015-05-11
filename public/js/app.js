@@ -35,7 +35,6 @@ grubApp.controller('MealPlanController',['$scope', '$rootScope','$http', 'HomeFa
     $rootScope.queryMealType;
     $scope.restaurantList = [];
     
-    if($rootScope.user.mealPlans.length > 0){
       HomeFactory.getMealPlan($rootScope.user.mealPlans[0]).success(function(data){
           $scope.yourMP = data.data;
           $scope.planName = $scope.yourMP.name;
@@ -116,11 +115,6 @@ grubApp.controller('MealPlanController',['$scope', '$rootScope','$http', 'HomeFa
       console.log($scope.res);
     });
   }
-  else
-  {
-    alert("You have no meal plans at the moment!");
-    window.location.assign('http://localhost:4000/#/home');
-  }
 
   }]);
 
@@ -193,7 +187,7 @@ grubApp.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactor
                        HomeFactory.updateUser($rootScope.userID, updateObj)
                          .success(function(data){
                            console.log('user successfully updated');
-                           window.location.assign('http://localhost:4000/#/mealplan');
+                           window.location.assign('http://104.236.235.68:4000/#/mealplan');
                          }
                        );
 
@@ -229,7 +223,7 @@ grubApp.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactor
                    // update the specified meal plan
                    HomeFactory.updateMealPlan($rootScope.mealPlanID, firstMealPlan).success(function(data){
                      console.log('successfully updatad users mealplan');
-                     window.location.assign('http://localhost:4000/#/mealplan');
+                     window.location.assign('http://104.236.235.68:4000/#/mealplan');
                    }).error(function(err){console.log('error: meal plan could not get updated')})
 
                  }
@@ -271,7 +265,7 @@ grubApp.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactor
             if(!$scope.sortBy){
               sort = "name";
             }
-           var baseUrl = 'http://104.236.235.68:4000/api';
+           var baseUrl = 'localhost:4000/api';
 
            // initial value of skip
            $rootScope.skip = 0;
