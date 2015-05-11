@@ -14,101 +14,7 @@ grubApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: '/partials/list.html',
     controller: 'ListController'
   })
-  /*.
-  otherwise({
-    redirectTo: '/home'
-  })
-  */
 }]);
-/*
-grubApp.controller('profileController', ['$scope', '$http', function($scope, $http) {
-   $scope.profile = false;
-   $http.get('/profile').success(function(data) {
-		console.log(data);
-		if(!data.error) {
-			$scope.profile = true;
-			$scope.user = data.user;
-		}
-
-   });
- }]);
-
- grubApp.controller('ListController',['$scope','$rootScope','$http', 'HomeFactory', function($scope, $rootScope,$http,  HomeFactory) {
-
-     console.log($rootScope.queryMealType);
-     console.log($rootScope.queryCategory);
-     console.log($rootScope.queryDate);
-     console.log($rootScope.queryBudget);
-
-
-     var myBudget = $rootScope.queryBudget;
-     var myMealType = $rootScope.queryMealType;
-     var category = $rootScope.queryCategory;
-     var date = $rootScope.queryDate;
-
-     console.log('price is '+myBudget+ ' mealType is '+myMealType+' category is '+category+' date is '+date);
-
-     HomeFactory.getMealList(myBudget, myMealType, category).success(function(data){
-           $scope.data = data.data;
-         }).error(function(data){
-           console.log('got an error');
-         })
-
-     $scope.selectRestaurant = function() {
-           var restaurantID = this.restaurant._id;
-
-           console.log(restaurantID);
-     }
- }]);
-
-
- grubApp.controller('HomeController', ['$scope' , '$rootScope', '$http', 'HomeFactory' ,function($scope, $rootScope, $http, HomeFactory) {
-   $scope.profile = false;
-   $http.get('/profile').success(function(data) {
-    console.log(data);
-    if(!data.error) {
-      $scope.profile = true;
-      $scope.user = data.user;
-      $rootScope.user = $scope.user._id;
-    }
-   });
-  $scope.budgeSearch = function () {
-      var myBudget = $scope.asad;
-      $rootScope.queryMealType = $scope.MealType;
-      $rootScope.queryCategory = $scope.category;
-      $rootScope.queryDate = $scope.date;
-
-      // set price level
-      if (myBudget <= 10)
-        myBudget = 1;
-      else if (myBudget <= 20)
-        myBudget = 2;
-      else if (myBudget <= 30)
-        myBudget = 3;
-      else
-        myBudget = 4;
-
-      $rootScope.queryBudget = myBudget;
-
-      console.log($rootScope.queryMealType);
-      console.log($rootScope.queryCategory);
-      console.log($rootScope.queryDate);
-      console.log($rootScope.queryBudget);
-  };
-}]);
-
-grubApp.controller('MealPlanController', ['$scope', '$rootScope', 'CommonData'  , function($scope, $rootScope, CommonData) {
-  $scope.data = "";
-   $scope.displayText = ""
-
-  $scope.setData = function(){
-    CommonData.setData($scope.data);
-    $scope.displayText = "Data set"
-
-  };
-
-}]);
-*/
 
 grubApp.controller('SecondController', ['$scope', 'CommonData' , function($scope, CommonData) {
   $scope.data = "";
@@ -122,7 +28,8 @@ grubApp.controller('SecondController', ['$scope', 'CommonData' , function($scope
 grubApp.controller('MealPlanController',['$scope', '$rootScope','$http', 'HomeFactory',
   function($scope, $rootScope, $http, HomeFactory){
     // Add meal to mealPlan
-
+    console.log('inside the meal plan');
+    console.log($rootScope.user);
   }]);
 
 grubApp.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactory' , function($scope, $rootScope,$http,  HomeFactory) {
@@ -133,7 +40,8 @@ grubApp.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactor
      if(!data.error) {
        $scope.profile = true;
        $scope.user = data.user;
-       $rootScope.userID = $scope.user._id;
+       //$rootScope.user = $scope.user;
+       $rootScope.userID = $rootScope.user._id;
 
        /**** GO TO MEAL PLAN ****/
        $scope.selectRestaurant = function() {
@@ -194,7 +102,7 @@ grubApp.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactor
                        HomeFactory.updateUser($rootScope.userID, updateObj)
                          .success(function(data){
                            console.log('user successfully updated');
-                           window.location.assign('http://localhost:4000/#/mealplan');
+                           //window.location.assign('http://localhost:4000/#/mealplan');
                          }
                        );
 
@@ -226,11 +134,12 @@ grubApp.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactor
 
                    // user should specify the meal plan
                    $rootScope.mealPlanID = user.mealPlans[0];
+                   console.log($rootScope.user);
 
                    // update the specified meal plan
                    HomeFactory.updateMealPlan($rootScope.mealPlanID, firstMealPlan).success(function(data){
                      console.log('successfully updatad users mealplan');
-                     window.location.assign('http://localhost:4000/#/mealplan');
+                     //window.location.assign('http://localhost:4000/#/mealplan');
                    }).error(function(err){console.log('error: meal plan could not get updated')})
 
                  }
@@ -339,6 +248,7 @@ grubApp.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactor
    });
 }]);
 
+/***** HOME CONTROLLER *******/
 grubApp.controller('HomeController', ['$scope' , '$rootScope', '$http', '$window', 'HomeFactory',function($scope, $rootScope, $http, $window, HomeFactory) {
     /***** SET USER ID *******/
     $scope.profile = false;
@@ -347,7 +257,7 @@ grubApp.controller('HomeController', ['$scope' , '$rootScope', '$http', '$window
      if(!data.error) {
        $scope.profile = true;
        $scope.user = data.user;
-       $rootScope.userID = $scope.user._id;
+       $rootScope.user = $scope.user;
      }
     });
 

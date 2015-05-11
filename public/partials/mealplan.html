@@ -4,7 +4,7 @@
   <!--User Info and Introduction-->
   <div class="row">
     <div class="medium-6 columns">
-      <h1>USERNAME's Mealplan</h1>
+      <h1>{{user.first}}'s Mealplan</h1>
     </div>
     <div class="medium-6 columns center">
       <h1 hidden>USERNAME's Mealplan</h1>
@@ -51,74 +51,23 @@
     <!--Mealplan Name, Date, and Total Cost-->
     <div class="row">
       <div class="small-12 columns center">
-        <span data-tooltip aria-haspopup="true" class="has-tip" title="Click to change MealPlan name"><a data-reveal-id="myModalName"><h1><u>Friday Funday</u></h1></a></span>
-        <h3><i> May 5th - $28</i></h3>
+        <span data-tooltip aria-haspopup="true" class="has-tip" title="Click to change MealPlan name"><a data-reveal-id="myModalName"><h3><u>{{planName}}</u></h3></a></span>
+        <h3><i>{{dateString}}</i></h3>
       </div>
     </div>
     <!--The Display that shows meal-times on large screens-->
     <div class="meal-times hide-for-small-only">
-    <div class="row">
-      <div class="medium-3 small-0 columns center">
-        <h6>Breakfast</h6>
-      </div>
-      <div class="medium-3 small-4 columns center">
-        <h6>Lunch</h6>
-      </div>
-      <div class="medium-3 small-4 columns center">
-        <h6>Dinner</h6>
-      </div>
-      <div class="medium-3 small-4 columns center">
-        <h6>Late</h6>
-      </div>
-    </div>
   </div>
-    <!--The Four Meals-->
+
     <div class="row">
-      <!--Breakfast-->
-      <div class="medium-3 columns meal center">
-          <!--An Example of a display where the meal has yet to be planned-->
-        <div class="no-meal-item">
-        <div class="show-for-small-only time-center">
-            <h6>Breakfast</h6>
-          </div>
-          <!--Button should go back to list with the date attribute tied so the meal gets added to the correct plan-->
-          <div onclick="location.href='#/list'" class="button success round add-meal">Add Meal!</div>
+      <div class="medium-3 columns meal center" ng-repeat="res in restaurantList">
+          <h2>{{res.typeTitle}}</h2>
+          <img src="{{res.image}}">
+          <h3>{{res.name}}</h3>
+          
       </div>
     </div>
-      <!--Lunch-->
-      <div class="medium-3 columns meal center">
-        <span data-tooltip aria-haspopup="true" class="has-tip" title="Remove Meal"><a href="#" class="button tiny alert">X</a></span>
-        <div class="meal-item">
-          <div class="show-for-small-only time">
-            <h6 class="trans">Lunch</h6>
-          </div>
-          <img src="http://s3-media4.fl.yelpassets.com/bphoto/BgeodAJHPKiH3wKk8n4LKw/o.jpg" alt="img not found">
-          <h5 class="restaurant-title">Destihl Restaurant & Brew Works</h5>
-        </div>
-      </div>
-      <!--Dinner-->
-      <div class="medium-3 columns meal">
-        <span data-tooltip aria-haspopup="true" class="has-tip" title="Remove Meal"><a href="#" class="button tiny alert">X</a></span>
-        <div class="meal-item">
-          <div class="show-for-small-only time">
-            <h6 class="trans">Dinner</h6>
-          </div>
-          <img src="http://s3-media4.fl.yelpassets.com/bphoto/BgeodAJHPKiH3wKk8n4LKw/o.jpg" alt="img not found">
-          <h5 class="restaurant-title">Destihl Restaurant & Brew Works</h5>
-        </div>
-      </div>
-      <!--Late Night-->
-      <div class="medium-3 columns meal">
-        <span data-tooltip aria-haspopup="true" class="has-tip" title="Remove Meal"><a href="#" class="button tiny alert">X</a></span>
-        <div class="meal-item">
-          <div class="show-for-small-only time">
-            <h6 class="trans">Late</h6>
-          </div>
-          <img src="http://s3-media4.fl.yelpassets.com/bphoto/BgeodAJHPKiH3wKk8n4LKw/o.jpg" alt="img not found">
-          <h5 class="restaurant-title">Destihl Restaurant & Brew Works</h5>
-        </div>
-      </div>
-    </div>
+
     <div class="line-break-white"></div>
   </div>
 

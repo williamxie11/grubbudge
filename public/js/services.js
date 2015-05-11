@@ -69,6 +69,14 @@ angular.module('grubServices', [])
 
             updateUser : function(ID, update) {
                 return $http.put(baseUrl + '/users/' + ID, update);
+            },
+
+            getRestaurantInfo : function(ID) {
+                return $http.get(baseUrl + '/restaurants/' + ID);
+            },
+
+            getMealPlan : function(ID) {
+                return $http.get(baseUrl + '/mealplans/' + ID);
             }
          }
     })
