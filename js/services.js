@@ -57,6 +57,10 @@ angular.module('grubServices', [])
             postMeal : function(mealData) {
                 console.log(mealData);
                 return $http.post(baseUrl + '/mealplans', mealData);
+            },
+
+            getUserInfo : function(ID) {
+                return $http.get(baseUrl + '/users/' + ID);
             }
          }
     })

@@ -19,14 +19,44 @@ grubControllers.controller('SecondController', ['$scope', 'CommonData' , functio
     $scope.data = CommonData.getData();
 
   };
-
 }]);
 
-grubControllers.controller('MealPlanController',['$scope', '$rootScope','$http', 'HomeFactory' , function($scope, $rootScope,$http,  HomeFactory){
-    
-}
+grubControllers.controller('MealPlanController',['$scope', '$rootScope','$http', 'HomeFactory', 
+  function($scope, $rootScope, $http, HomeFactory){
+    // Add meal to mealPlan
+
+  }]);
 
 grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'HomeFactory' , function($scope, $rootScope,$http,  HomeFactory) {
+
+    $rootScope.userID = '554fd3584de62f8e08738104';
+    /**** GO TO MEAL PLAN ****/
+    $scope.selectRestaurant = function() {
+          var restaurantID = this.restaurant._id;
+          $rootScope.currRestaurant = restaurantID;
+
+          HomeFactory.getUserInfo($rootScope.userID).success(function(userData){
+              console.log(userData);
+              var user = userData.data;
+
+              // no existing mealPlans
+              if(user.mealPlans.length == 0){
+                 var firstMealPlan = {
+                  name: "firstMealPlan",
+                  planDate: $rootScope.queryDate,
+                  assignedUser: $rootScope.userID
+                 }
+
+                 //create a new mealPlan
+                 HomeFactory.createMealPlan(firstMealPlan).success(function(data){
+                    console.log(data.message);
+                    $rootScope.mealPlanID = data.data._id;
+                 }).error(function(err){console.log('Error creating a new meal plan');})
+              }
+          })
+
+          //window.location.assign('http://localhost:3000/#/mealplan');
+    }
 
     var myBudget = $rootScope.queryBudget;
     var myMealType = $rootScope.queryMealType;
@@ -78,13 +108,6 @@ grubControllers.controller('ListController',['$scope', '$rootScope','$http', 'Ho
             console.log('got an error');
           })
         }
-    }
-
-    $scope.selectRestaurant = function() {
-          var restaurantID = this.restaurant._id;
-          $rootScope.currRestaurant = restaurantID;
-
-          console.log(restaurantID);
     }
 
     $scope.prev = function() {
