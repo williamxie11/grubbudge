@@ -1,0 +1,204 @@
+@import url('http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather');
+@import url('http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
+
+
+h1 {
+  font-size: 2.2rem;
+  color: lighten($orange, 25);
+}
+body{
+  background:url('//demosthenes.info/assets/images/polina.jpg');
+}
+.name{
+  background-color:$trans2;
+}
+.test {
+  font-size: 1.2rem;
+  color: $blue;
+}
+label {
+  color: white;
+}
+
+video { 
+  position: fixed; 
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+ background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+  background-size: cover;
+  transition: 1s opacity;
+}
+button {
+  background-color: red; 
+  color: black;
+}
+.currencyinput {
+    border: 1px inset #ccc;
+}
+.currencyinput input {
+    border: 0;
+}
+#submit-button{
+  //position:relative;
+}
+#input{
+  
+  background-color:$trans2;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  
+}
+#input-list{
+  margin-top: 10px;
+  border-bottom-style: solid;
+  width:90%;
+}
+
+#input-list input select{
+  background-color:$trans2;
+}
+.list-item{
+  margin-bottom:6px;
+  //background-color:$silver;
+}
+.reveal-modal{
+  text-align: center;
+}
+.reveal-modal h3{
+  color:$black;
+
+}
+.modal-button{
+  margin:0 auto;
+}
+.addedMeal{
+  padding-top: 10px;
+  float:right;
+  z-index: 100;
+}
+.item-bg{
+  padding-top:10px;
+  padding-bottom:10px;
+  display:inline-block;
+  background-color:$silver;
+}
+.meal{
+  margin-top: 10px;
+}
+.block{
+  background-color:$white;
+}
+.line-break{
+  //padding-top: 10px;
+  //border-bottom:groove;
+  //border-color:$base;
+  margin:0 auto;
+  width:70%;
+  @media only screen and (max-width: 40em) {width:90% }
+}
+.line-break-white{
+  padding-top: 10px;
+  border-bottom:groove;
+  border-color:$white;
+  margin:0 auto;
+  width:80%;
+  @media only screen and (max-width: 40em) {width:90% }
+}
+.line-break-white-full{
+  padding-top: 10px;
+  border-bottom:groove;
+  border-color:$white;
+  border-width:2px;
+  margin:0 auto;
+  margin-bottom:5px;
+  width:100%;
+}
+.restaurant-title{
+  color:$oil;
+}
+.restaurant-review{
+  color:$oil;
+  display:inline-block;
+}
+.star{
+  display:inline-block;
+}
+.star-tag{
+  margin-top: -15px;
+}
+.margin{
+  margin-left:5px;
+  margin-right:5px;
+}
+.center{
+  text-align: center;
+}
+.hidden{
+  visibility: hidden;
+}
+.meal-item{
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+  padding-right:10px;
+  display:inline-block;
+  background-color:$silver;
+  position:relative;
+}
+.time{
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+  padding-right:10px;
+  display:inline-block;
+  position:absolute;
+}
+.time-center{
+   padding-top:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+  padding-right:10px;
+  display:inline-block;
+  margin:0 auto;
+}
+.trans{
+  color:$trans2;
+}
+.meal a{
+  position:absolute;
+  right:15px;
+  z-index: 10;
+}
+.meal-name{
+  display: inline-block;
+}
+.add-meal{
+  margin:0 auto;
+}
+.no-meal-item{
+  padding-top:40px;
+  @media only screen and (max-width: 40em) {padding-top:0px }
+  padding-bottom:10px;
+  width:100%;
+}
+.wrap{
+  display:inline-block;
+}
+.lab {
+  color: white;
+}
+
+.but {
+  background-color: red;
+}
+
+.row {
+  width: 50%;
+}

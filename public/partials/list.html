@@ -1,0 +1,100 @@
+<div class="list" ng-controller='ListController'>
+
+  <!--Input Form-->
+	<form data-abide>
+   <div id="input-list" class="row">
+        <!--Empty Space-->
+        <div class="small-1 columns">&nbsp;</div>
+        <!--Budget Input-->
+        <div class="medium-2 columns">
+          <div class="row collapse prefix-round">
+            <div class="small-2 columns"><span class="prefix">$</span></div>
+            <div class="small-10 columns"><input ng-model="asad" type="text" placeholder="Budget"></div>
+          </div>
+        </div>
+        <!--MealType-->
+        <div class="medium-3 columns">
+          <select ng-model="MealType">
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="latenight">Late Night</option>
+          </select>
+        </div>
+        <!--Search Input-->
+        <div class="medium-3 columns"><input ng-model="category" type="text" placeholder="Food category? eg. barbeque, pizza etc"/></div>
+        <!--Date Input-->
+        <div class="medium-2 columns"><datepicker><input ng-model="date" placeholder="Date" ng-model="date" type="text"/></datepicker></div>
+        <!--Empty Space-->
+        <div class="small-1 columns">&nbsp;</div>
+
+        <!--Sort Dropdown, used grid to force to right side-->
+        <div class="row">
+          <div class="medium-10 columns hide-for-small-only">&nbsp;</div>
+        <div class=" lab small-centered medium-5 columns">
+          <label class="lab small-5 columns">Order by:
+            <select>
+              <option value="cheapest">Cheapest</option>
+              <option value="mostExpensive">Most Expensive</option>
+              <option value="highestRating">Highest Rating</option>
+            </select>
+          </label>
+
+          <!--LIST SEARCHHHHHHHHHHHHH-->
+          <label class="lab small-5 columns">Order by:
+            <select  id="order-by">
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+          </label><br>
+          <button ng-click="listSearch()">Search</button>
+        </div>
+
+        <div class="small-centered medium-10 columns">
+          <button class="but" ng-click="prev()">Prev</button>
+          <button class="but large-offset-5" ng-click="next()">Next</button>
+        </div>
+      </div>
+  </div>
+</form>
+
+          <!--           ASAD:                 IF LOGGED IN (Go to meal plan) ELSE (display loginContinue Modal)    -->
+
+<!-- *************************************************************************************** -->
+<!-- *************************************************************************************** -->
+<!-- *************************************************************************************** -->
+<!-- *************************************************************************************** -->
+
+      <!--Restaurant Item-->
+      <div ng-repeat="restaurant in data" class="list-item">
+      	<div class="row" >
+          <div class="item-bg">
+          	<div class="medium-6 large-3 columns">
+          		<a class="th" href="{{restaurant.url}}" target="_blank"><img ng-src="{{restaurant.image}}" alt="img not found"></a>
+          	</div>
+
+      	<div class="medium-6 large-9 columns">
+          <!--ASAD: IF LOGGED IN (Go to meal plan) ELSE (display loginContinue Modal)-->
+          <button ng-click="selectRestaurant()" class="button success addedMeal"><i class="fa fa-check"></i>&nbsp;Budge It!</button>
+      		<h3 class="restaurant-title">{{restaurant.name}}</h3>
+          <p><i>{{restaurant.mealType[0]}} &nbsp {{restaurant.mealType[1]}} &nbsp {{restaurant.mealType[2]}} &nbsp {{restaurant.mealType[3]}}</i></p>
+      		<div class="star">
+              <span><i>Rating:</i> </span><img ng-src="{{restaurant.ratingURL}}" alt="asad"/><br>
+              <span><i>Price Level (range 1-4):</i> <b>{{restaurant.price}}</b></span><br>
+          </div>
+      		<h5 class = "restaurant-review"></h5>
+          <p><i>
+            {{restaurant.address}} <br>
+            Categories: {{restaurant.categories[0]}}, {{restaurant.categories[1]}}
+          </i></p>
+      		</div>
+        </div>
+        </div>
+        <div class="line-break"></div>
+      </div>
+      <script>
+      $(document).ready(function() {
+		    $(document).foundation();
+		  });
+</script>
+</div>

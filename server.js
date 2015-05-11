@@ -22,15 +22,13 @@ app.use(cookieParser());
 app.use(bodyParser());
 
 app.use(session({ secret: 'passport demo' }));
-app.use(express.static(__dirname + '/frontend'));
+app.use(express.static(__dirname + '/public'));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 require('./app/routes.js')(app, passport);
 
-app.listen(port);
-console.log('Server running on port ' + port);
 
 /* --------- API --------- */
 
@@ -751,3 +749,7 @@ restaurantIdRoute.delete(function (req, res) {
 		});
 	});
 });
+
+
+app.listen(port);
+console.log('Server running on port ' + port);
